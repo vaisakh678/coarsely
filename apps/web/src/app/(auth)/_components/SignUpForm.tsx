@@ -8,6 +8,8 @@ import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { signUpSchema, SignUpSchemaType } from "@repo/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useMutation } from "@tanstack/react-query";
+import { signUp } from "../../../utils/api";
 
 const SignUpForm = () => {
 	const {
@@ -18,6 +20,14 @@ const SignUpForm = () => {
 		resolver: zodResolver(signUpSchema),
 	});
 
+	const mutation = useMutation({
+		mutationKey: ["user"],
+		mutationFn: signUp,
+		onSuccess: (resp) => {
+			console.log("Success", resp);
+		},
+	});
+
 	return (
 		<div className="border border-[#dfdfe0] max-w-[400px] w-full h-[500px] rounded-xl px-8 pt-6 pb-4 shadow-sm">
 			<div className="w-full flex justify-center flex-col items-center">
@@ -26,16 +36,7 @@ const SignUpForm = () => {
 				<p className="opacity-80 text-sm font-thin">Please fill in the details to get started.</p>
 			</div>
 			<fieldset disabled={isSubmitting}>
-				<form
-					onSubmit={handleSubmit((data) => {
-						console.log(data);
-						return new Promise((resolve) => {
-							setTimeout(() => {
-								resolve(null);
-							}, 200);
-						});
-					})}
-				>
+				<form onSubmit={handleSubmit((data) => mutation.mutateAsync(data))}>
 					<div className="mt-6 space-y-2">
 						<TextField {...register("fullName")} error={!!errors.fullName} helperText={errors.fullName?.message} label="Full Name" />
 						<TextField {...register("email")} error={!!errors.email} helperText={errors.email?.message} label="Email" />
