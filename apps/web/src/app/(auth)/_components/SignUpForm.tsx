@@ -10,6 +10,7 @@ import { signUpSchema, SignUpSchemaType } from "@repo/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import { signUp } from "../../../utils/api";
+import { AxiosError } from "axios";
 
 const SignUpForm = () => {
 	const {
@@ -24,9 +25,21 @@ const SignUpForm = () => {
 		mutationKey: ["user"],
 		mutationFn: signUp,
 		onSuccess: (resp) => {
-			console.log("Success", resp);
+			console.log("resp", resp);
 		},
 	});
+
+	let err;
+
+	if (mutation.error) {
+		if (mutation.error instanceof AxiosError) {
+			err = mutation.error.response?.data.message;
+		} else {
+			err = "Something went wrong";
+		}
+	}
+
+	console.log("errrr", mutation.data);
 
 	return (
 		<div className="border border-[#dfdfe0] max-w-[400px] w-full h-[500px] rounded-xl px-8 pt-6 pb-4 shadow-sm">
@@ -47,10 +60,11 @@ const SignUpForm = () => {
 					</Button>
 				</form>
 			</fieldset>
-			<div className="mt-4 flex justify-center">
+			<div className="mt-4 flex items-center flex-col">
 				<p className="text-center text-sm">
 					Already have an account? <Link href={"signin"}>Sign In</Link>
 				</p>
+				{err ? <p className="text-sm text-red-500 mt-1">{err}</p> : null}
 			</div>
 		</div>
 	);

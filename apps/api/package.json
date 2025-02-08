@@ -25,13 +25,13 @@
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
-		"@neondatabase/serverless": "^0.10.4",
 		"@repo/schemas": "workspace:*",
-		"bcrypt": "^5.1.1",
+		"@types/jsonwebtoken": "^9.0.8",
 		"cors": "^2.8.5",
 		"dotenv": "^16.4.7",
 		"drizzle-orm": "^0.39.2",
 		"express": "^4.21.2",
+		"jsonwebtoken": "^9.0.2",
 		"pg": "^8.13.1"
 	},
 	"peerDependencies": {

@@ -1,8 +1,13 @@
+"use client";
+
 import React from "react";
-import { BookOpen } from "lucide-react";
+import { BookOpen, CircleUserRound } from "lucide-react";
 import Link from "next/link";
+import { useAuth } from "../hooks/AuthProvider";
 
 const Header = () => {
+	const { isLoggedIn } = useAuth();
+
 	return (
 		<div className="h-12 px-10 bg-black flex justify-between items-center text-white">
 			<div className="flex items-center gap-3">
@@ -12,12 +17,18 @@ const Header = () => {
 				</Link>
 			</div>
 			<div className="flex items-center gap-3">
-				<Link className="text-sm font-medium" href="signin">
-					Sign In
-				</Link>
-				<Link className="text-sm font-medium" href="signup">
-					Sign Up
-				</Link>
+				{isLoggedIn ? (
+					<CircleUserRound />
+				) : (
+					<>
+						<Link className="text-sm font-medium" href="signin">
+							Sign In
+						</Link>
+						<Link className="text-sm font-medium" href="signup">
+							Sign Up
+						</Link>
+					</>
+				)}
 			</div>
 		</div>
 	);
