@@ -1,0 +1,1 @@
+ALTER TABLE "leacture" RENAME COLUMN "asset_type" TO "assetType";
