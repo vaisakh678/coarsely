@@ -1,0 +1,31 @@
+{
+	"name": "api",
+	"version": "1.0.0",
+	"description": "",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"build": "tsc -b",
+		"dev": "npm run build && node dist/server.js",
+		"db:generate": "npx drizzle-kit generate --config=src/db/drizzle.config.ts",
+		"db:migrate": "npx drizzle-kit migrate --config=src/db/drizzle.config.ts",
+		"db:studio": "npx drizzle-kit studio --config=src/db/drizzle.config.ts"
+	},
+	"devDependencies": {
+		"@repo/typescript-config": "workspace:*",
+		"@types/pg": "^8.11.11",
+		"drizzle-kit": "^0.30.4",
+		"tsx": "^4.19.2"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"@neondatabase/serverless": "^0.10.4",
+		"@types/express": "^5.0.0",
+		"cors": "^2.8.5",
+		"dotenv": "^16.4.7",
+		"drizzle-orm": "^0.39.2",
+		"express": "^4.21.2",
+		"pg": "^8.13.1"
+	}
+}
