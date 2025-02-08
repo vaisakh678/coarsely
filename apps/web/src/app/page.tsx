@@ -1,12 +1,10 @@
 import Category from "../components/Category";
 import CourseCard from "../components/CourseCard";
 import Footer from "../components/Footer";
-import Header from "../components/Header";
 
 export default function Home() {
 	return (
-		<div className="w-screen h-svh">
-			<Header />
+		<>
 			<div className="min-h-svh px-16">
 				<div className="bg-blue-300x pt-14 pb-32 max-w-[600px]">
 					<h1 className="text-4xl  mb-3">Expand Your Knowledge with our coureses</h1>
@@ -30,6 +28,6 @@ export default function Home() {
 				</div>
 			</div>
 			<Footer />
-		</div>
+		</>
 	);
 }
