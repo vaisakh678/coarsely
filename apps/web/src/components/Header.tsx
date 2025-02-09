@@ -4,9 +4,14 @@ import React from "react";
 import { BookOpen, CircleUserRound } from "lucide-react";
 import Link from "next/link";
 import { useAuth } from "../hooks/AuthProvider";
+import { useParams } from "next/navigation";
 
 const Header = () => {
 	const { isLoggedIn } = useAuth();
+	const params = useParams();
+	if (params.lectureId) {
+		return null;
+	}
 
 	return (
 		<div className="h-12 px-10 bg-black flex justify-between items-center text-white">
