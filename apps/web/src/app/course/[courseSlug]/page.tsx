@@ -1,5 +1,6 @@
 import React from "react";
 import CourseContent from "./_components/CourseContent";
+import Footer from "../../../components/Footer";
 
 const Course = () => {
 	return (
@@ -19,6 +20,8 @@ const Course = () => {
 					<CourseContent />
 				</div>
 			</div>
+
+			<Footer />
 		</div>
 	);
 };
